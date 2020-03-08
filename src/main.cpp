@@ -85,8 +85,7 @@ extern "C" {
         png_write_info(png, info);
 
         // flush to the output buffer every x rows
-
-        //png_set_flush(png, chunkHeight);
+        png_set_flush(png, chunkHeight);
 
         return 0;
 
