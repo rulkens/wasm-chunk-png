@@ -6,3 +6,5 @@ node_modules
 CMakeCache.txt
 CMakeFiles
 Makefile
+docs/chunk_png.js
+docs/chunk_png.wasm
