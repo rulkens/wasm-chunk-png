@@ -50,8 +50,6 @@ function init() {
             break;
         }
     };
-    document.querySelector('.sel-colors').onchange = imageParamsChanged;
-    document.querySelector('.sel-dithering').onchange = imageParamsChanged;
     document.querySelector('.link-download').onclick = e => {
         e.preventDefault();
         downloadImage();
@@ -72,7 +70,11 @@ function log(msg) {
     while (logTime.length < 5) {
         logTime = ' ' + logTime;
     }
-    logEl.innerHTML += `[${logTime}ms] ${msg}\n`;
+    if(logEl) {
+        logEl.innerHTML += `[${logTime}ms] ${msg}\n`;
+    } else {
+        console.warn(msg);
+    }
 }
 
 function logError(msg) {
@@ -80,18 +82,15 @@ function logError(msg) {
 }
 
 function getOptions() {
-    return {
-        maxColors: +document.querySelector('.sel-colors').value,
-        dithering: +document.querySelector('.sel-dithering').value,
-    };
+    return {};
 }
 
 function processFile(file) {
     initLog();
     currentTask = { fileName: file.name };
     const dragError = document.querySelector('.drag-error');
-    if (file.type != 'image/png') {
-        dragError.innerHTML = 'We support only PNG files.';
+    if (file.type !== 'image/png' && file.type !== 'image/jpeg') {
+        dragError.innerHTML = 'We support only PNG / JPG files.';
         dragError.style.display = 'block';
         return;
     }

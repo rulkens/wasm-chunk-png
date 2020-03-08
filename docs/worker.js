@@ -1,10 +1,10 @@
 self.Module = {
-    wasmBinaryFile: 'dist/image_compressor.wasm',
+    wasmBinaryFile: 'chunk_png.wasm',
     print: log,
     printErr: logError
 };
 
-importScripts('dist/image_compressor.js');
+importScripts('chunk_png.js');
 
 self.onmessage = e => {
     switch (e.data.type) {
@@ -24,13 +24,12 @@ function processImage(args) {
             self.postMessage({ type: 'error', error: `Invalid data length: ${rgbData.byteLength}, expected ${width * height * 4}` });
             return;
         }
-        const compressedSizePointer = Module._malloc(4);
-        const { maxColors, dithering } = options;
-        const result = Module._compress(width, height, maxColors, dithering, buffer, compressedSizePointer);
+        const outputSizePt = Module._malloc(4);
+        const result = Module._compress(width, height, buffer, outputSizePt);
         if (result) {
             self.postMessage({ type: 'error', error: `Compression error: ${result}` });
         } else {
-            const compressedSize = Module.getValue(compressedSizePointer, 'i32', false);
+            const compressedSize = Module.getValue(outputSizePt, 'i32', false);
             const percentage = (compressedSize / fileSize * 100).toFixed(1);
             log(`Compressed: ${fileSize} -> ${compressedSize} bytes (${percentage}%)`);
             const compressed = new Uint8Array(compressedSize);
@@ -38,7 +37,7 @@ function processImage(args) {
             self.postMessage({ type: 'result', result: compressed });
         }
         Module._free(buffer);
-        Module._free(compressedSizePointer);
+        Module._free(outputSizePt);
     } catch (e) {
         logError(e.toString());
     }
