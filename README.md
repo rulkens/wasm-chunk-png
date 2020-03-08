@@ -1,10 +1,9 @@
-# WASM Image compressor
+# WASM PNG Chunk Encoder
 
-This is a PNG image compressor working in browser, built with WebAssembly.
+Sometimes you need to encode very large png files in the browser. You can use this library for it.
 
 ## Libraries used
 
-- [libimagequant](https://pngquant.org/lib/)
 - [libpng](http://www.libpng.org/pub/png/libpng.html)
 - [zlib](http://www.zlib.net)
 
@@ -17,17 +16,17 @@ Prerequisties:
 - CMake
 
 ```bash
-git clone --recursive git@github.com:antelle/wasm-image-compressor.git
-cd wasm-image-compressor
+git clone --recursive https://github.com/rulkens/wasm-chunk-png.git
+cd wasm-chunk-png
 ./build.sh
 ```
 
 ## Why?
 
-Nothing special here, it's just a demo of using some libs like zlib and libpng in WebAssembly.
+## Thanks
 
-There's no particular reason to create a tool like this, however feel free to use it if you like it. It's just a simple Web UI for libimagequant.
+I would like to thank user antelle.net for providing the basic code to make this work.
 
 ## License
 
-[GPLv3](LICENSE)
+[MIT](LICENSE)

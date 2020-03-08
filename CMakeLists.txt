@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.7)
 
+set(CMAKE_C_COMPILER "")
+set(CMAKE_CXX_COMPILER "")
+
 include($ENV{EMSCRIPTEN}/cmake/Modules/Platform/Emscripten.cmake)
 
 project(image_compressor)
@@ -7,7 +10,7 @@ project(image_compressor)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY .tmp/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY .tmp/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY docs/dist)
-set(CMAKE_EXECUTABLE_OUTPUT_PATH docs/dist)
+set(CMAKE_EXECUTABLE_OUTPUT_PATH docs)
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_BUILD_TYPE MinSizeRel)
@@ -17,8 +20,8 @@ set(CMAKE_EXE_LINKER_FLAGS "-O3 -g0 --memory-init-file 0 \
 -s NO_FILESYSTEM=1 -s DEMANGLE_SUPPORT=0 -s ASSERTIONS=0 -s NO_EXIT_RUNTIME=1 \
 -s ALLOW_MEMORY_GROWTH=1 \
 -s WASM=1 -s DISABLE_EXCEPTION_CATCHING=1 \
--s EXPORTED_FUNCTIONS='[\"_compress\"]' \
--s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"cwrap\"]'")
+-s EXPORTED_FUNCTIONS='[\"_compress\", \"_malloc\", \"_free\"]' \
+-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"cwrap\", \"getValue\"]'")
 
 include_directories(lib/imagequant)
 include_directories(lib/libpng)

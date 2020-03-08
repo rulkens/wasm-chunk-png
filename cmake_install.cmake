@@ -1,4 +1,4 @@
-# Install script for directory: /Users/Antelle/Projects/wasm-image-compressor
+# Install script for directory: /Users/rulkens/Development/js/wasm-chunk-png
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,15 +27,10 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-# Is this installation the result of a crosscompile?
-if(NOT DEFINED CMAKE_CROSSCOMPILING)
-  set(CMAKE_CROSSCOMPILING "TRUE")
-endif()
-
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/Antelle/Projects/wasm-image-compressor/lib/zlib/cmake_install.cmake")
-  include("/Users/Antelle/Projects/wasm-image-compressor/lib/libpng/cmake_install.cmake")
+  include("/Users/rulkens/Development/js/wasm-chunk-png/lib/zlib/cmake_install.cmake")
+  include("/Users/rulkens/Development/js/wasm-chunk-png/lib/libpng/cmake_install.cmake")
 
 endif()
 
@@ -47,5 +42,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/Antelle/Projects/wasm-image-compressor/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/rulkens/Development/js/wasm-chunk-png/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
