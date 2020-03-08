@@ -1,0 +1,11 @@
+{
+  "name": "wasm-chunk-png",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rulkens/wasm-chunk-png.git",
+  "author": "Alexander Rulkens <rulkens@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "^1.19.1"
+  }
+}
